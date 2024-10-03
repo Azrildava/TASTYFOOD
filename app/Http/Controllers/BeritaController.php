@@ -45,7 +45,7 @@ class BeritaController extends Controller
         $berita->deskripsi = $request->deskripsi;
 //upload images
         $image = $request->file('gambar');
-        $image->storeAs('public/beritas', $image->hashName());
+        $image->storeAs('pub        lic/beritas', $image->hashName());
         $berita->gambar = $image->hashName();
         Alert()->success('Success', 'data berhasil di tambah');
         $berita->save();

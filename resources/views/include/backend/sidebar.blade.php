@@ -22,6 +22,15 @@
                                 <li class="nav-item"> <a href="{{route ('contact.index')}}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Kontak</p>
                                     </a> </li>
+                                    <li class="user-footer"> <a href="#" class="btn btn-default btn-flat">Profile</a> <a
+                                class="btn btn-default btn-flat float-end" href="{{ route('logout') }}"
+                                href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
                             </ul>
                         </li>
                     </ul>
