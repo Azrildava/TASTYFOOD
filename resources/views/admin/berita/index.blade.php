@@ -33,7 +33,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $item->judul}}</td>
                                     <td>{{ $item->deskripsi }}</td>
-                                    <td><img src="{{asset('/storage/beritas/'.$item->gambar)}}" alt="" style="width: 100px"></td>
+                                    <td><img src="{{asset('/storage/beritas/'.$item->gambar)}}" alt="" style="width: 150px"></td>
                                     <td>
                                         <form action="{{ route('berita.destroy', $item->id) }}" method="post">
                                             @method('DELETE')

@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-    <h2 class="thick"><b>BERITA KAMI</b></h2>
+    <h2 class="thicck"><b>BERITA KAMI</b></h2>
     <!-- Hero Section -->
      <section class="news-content">
         <div class="container">
@@ -26,6 +26,34 @@
 
                     <a href="#" class="btn-black"><b>BACA SELENGKAPNYA</b></a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-other">
+        <div class="container">
+            <h3 class="news-other text-center"><b>BERITA LAINNYA</b></h3>
+            <div class="row g-5">
+                @php
+                    $beritas = App\Models\Berita::orderBy('id', 'asc')->get();
+                    $duplicatedBeritas = $beritas->concat($beritas); // Menggabungkan koleksi dengan dirinya sendiri
+                @endphp
+
+                @foreach ($duplicatedBeritas as $item)
+                    <div class="col-md-3"> <!-- 4 kolom per baris -->
+                        <div class="card berita-card distance-card">
+                            <img alt="Fresh vegetables on a table" class="card-img-top" height="200"
+                                src="{{ asset('/storage/beritas/' . $item->gambar) }}" width="600" />
+                            <div class="card-body d-flex">
+                                <h5 class="card-title">{{ $item->judul }}</h5>
+                                <p class="card-text">{{ $item->deskripsi }}</p>
+                                <a class="read-more" href="#">
+                                    Baca selengkapnya
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

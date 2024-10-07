@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('content')
-<h2 class="thick"><b>GALERI KAMI</b></h2>
+<h2 class="thickk"><b>GALERI KAMI</b></h2>
     <!-- Carousel -->
     <section class="slider">
         <div id="foodCarousel" class="carousel slide content" data-bs-ride="carousel">

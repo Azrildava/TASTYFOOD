@@ -37,7 +37,7 @@ class BeritaController extends Controller
         $validated = $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:png,jpg|max:500',
+            'gambar' => 'required|image|mimes:png,jpg',
         ]);
 
         $berita = new Berita();
@@ -45,7 +45,7 @@ class BeritaController extends Controller
         $berita->deskripsi = $request->deskripsi;
 //upload images
         $image = $request->file('gambar');
-        $image->storeAs('pub        lic/beritas', $image->hashName());
+        $image->storeAs('public/beritas', $image->hashName());
         $berita->gambar = $image->hashName();
         Alert()->success('Success', 'data berhasil di tambah');
         $berita->save();
@@ -67,7 +67,7 @@ class BeritaController extends Controller
         $validated = $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:png,jpg|max:500',
+            'gambar' => 'required|image|mimes:png,jpg',
         ]);
 
         $berita = Berita::findOrFail($id);
