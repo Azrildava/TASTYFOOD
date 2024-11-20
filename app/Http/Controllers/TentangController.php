@@ -30,19 +30,15 @@ class TentangController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $this->validate($request, [
             'judul' => 'required',
-            'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:png,jpg|max:500',
+            'content' => 'required',
         ]);
 
         $tentang = new Tentang();
         $tentang->judul = $request->judul;
+        $tentang->content = $request->content;
         $tentang->deskripsi = $request->deskripsi;
-//upload images
-        $image = $request->file('gambar');
-        $image->storeAs('public/tentangs', $image->hashName());
-        $tentang->gambar = $image->hashName();
         Alert()->success('Success', 'data berhasil di tambah');
         $tentang->save();
         return redirect()->route('tentang.index');
@@ -62,18 +58,13 @@ class TentangController extends Controller
     {
         $validated = $request->validate([
             'judul' => 'required',
-            'deskripsi' => 'required',
-            'gambar' => 'required|image|mimes:png,jpg|max:500',
+            'content' => 'required',
         ]);
 
         $tentang = Tentang::findOrFail($id);
         $tentang->judul = $request->judul;
+        $tentang->content = $request->content;
         $tentang->deskripsi = $request->deskripsi;
-        //upload images
-        $image = $request->file('gambar');
-        $image->storeAs('public/tentangs/', $image->hashName());
-        $tentang->gambar = $image->hashName();
-        Alert()->success('Success', 'data berhasil di tambah');
         $tentang->save();
         return redirect()->route('tentang.index');
     }
@@ -81,9 +72,7 @@ class TentangController extends Controller
     public function destroy($id)
     {
         $tentang = Tentang::FindOrFail($id);
-
         toast()->success('Success', 'data berhasil dihapus');
-        Storage::delete('public/tentangs/' . $tentang->image);
         $tentang->delete();
         return redirect()->route('tentang.index');
     }

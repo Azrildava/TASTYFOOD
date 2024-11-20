@@ -1,23 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.backend')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+    <div class="container mt-5 text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                
+                <div class="card shadow-lg border-0 rounded-lg p-5">
+                    <div class="card-body">
+                        <h1 class="display-4 mb-4">Selamat Datang Di Halaman Admin!!!</h1>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tentangs', function (Blueprint $table) {
+        Schema::create('sliders', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('content');
-            $table->string('deskripsi')->nullable();
+            $table->string('slider');
             $table->timestamps();
         });
     }
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tentangs');
+        Schema::dropIfExists('sliders');
     }
 };

@@ -14,9 +14,9 @@
                 <div class="col-md-2">
                     <h5>Useful links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{route('tentang')}}">Tentang</a></li>
                         <li><a href="#">Hewan</a></li>
-                        <li><a href="#">Galeri</a></li>
+                        <li><a href="{{route('galeri')}}">Galeri</a></li>
                         <li><a href="#">Testimonial</a></li>
                     </ul>
                 </div>
@@ -24,8 +24,8 @@
                     <h5>Privacy</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">Karir</a></li>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Kontak Kami</a></li>
+                        <li><a href="{{route('tentang')}}">Tentang Kami</a></li>
+                        <li><a href="{{route('contact')}}">Kontak Kami</a></li>
                         <li><a href="#">Servis</a></li>
                     </ul>
                 </div>

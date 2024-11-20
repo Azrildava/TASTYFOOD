@@ -1,30 +1,32 @@
 @extends('layouts.user')
 @section('content')
-    <h2 class="thicck"><b>BERITA KAMI</b></h2>
+    <div class="content">
+        <h2><b>BERITA KAMI</b></h2>
+    </div>
     <!-- Hero Section -->
      <section class="news-content">
-        <div class="container">
-            <div class="row">
+        <div class="container news-nusantara">
+            <div class="row row-news">
                 <!-- Bagian Gambar Misi -->
                 <div class="col-md-6">
                     <img src="{{ asset('assets/img/eiliv-aceron-ZuIDLSz3XLg-unsplash.jpg') }}" alt="News Image"
-                        class="img-fluid rounded-image-news">
+                        class="img-fluid rounded-image-news mb-3">
                 </div>
                 <!-- Bagian Teks Misi -->
-                <div class="col-md-6 text-content-news">
-                    <h3><b>APA SAJA MAKANAN KHAS NUSANTARA?</b></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque magna aliquet cursus
-                        tempus. Duis viverra metus et turpis elementum elementum. Aliquam rutrum placerat tellus et
-                        suscipit. Curabitur facilisis lectus vitae eros malesuada eleifend. Mauris eget tellus odio.
-                        Phasellus vestibulum turpis ac sem commodo, at posuere eros consequat. Duis nec ex at ante
-                        volutpat</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque magna aliquet cursus
-                        tempus. Duis viverra metus et turpis elementum elementum. Aliquam rutrum placerat tellus et
-                        suscipit. Curabitur facilisis lectus vitae eros malesuada eleifend. Mauris eget tellus odio.
-                        Phasellus vestibulum turpis ac sem commodo, at posuere eros consequat. Duis nec ex at ante
-                        volutpat</p>
+                <div class="col-12 col-md-6 text-content-news mb-5">
+                    <h3 class="mb-4"><b>APA SAJA MAKANAN KHAS NUSANTARA?</b></h3>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu
+                        rutrum commodo,
+                        dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel
+                        luctus ex. Fusce sit amet viverra ante.</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu
+                        rutrum commodo,
+                        dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel
+                        luctus ex. Fusce sit amet viverra ante.</p>
 
-                    <a href="#" class="btn-black"><b>BACA SELENGKAPNYA</b></a>
+                    <div class="btn-container"> <!-- Tambahkan div wrapper untuk tombol -->
+                        <a href="#" class="btn-black"><b>BACA SELENGKAPNYA</b></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,13 +35,13 @@
     <section class="news-other">
         <div class="container">
             <h3 class="news-other text-center"><b>BERITA LAINNYA</b></h3>
-            <div class="row g-5">
-                @php
-                    $beritas = App\Models\Berita::orderBy('id', 'asc')->get();
-                    $duplicatedBeritas = $beritas->concat($beritas); // Menggabungkan koleksi dengan dirinya sendiri
+            <div class="row g-5" id="news-container">
+                 @php
+                    $news = App\Models\Berita::orderBy('id', 'asc')->paginate(4);
+                    $duplicatednews = $news->concat($news)
                 @endphp
 
-                @foreach ($duplicatedBeritas as $item)
+                @foreach ($duplicatednews as $item)
                     <div class="col-md-3"> <!-- 4 kolom per baris -->
                         <div class="card berita-card distance-card">
                             <img alt="Fresh vegetables on a table" class="card-img-top" height="200"
@@ -47,14 +49,52 @@
                             <div class="card-body d-flex">
                                 <h5 class="card-title">{{ $item->judul }}</h5>
                                 <p class="card-text">{{ $item->deskripsi }}</p>
-                                <a class="read-more" href="#">
+                                <a class="read-more" href="{{route ('beritas.show', $item->id )}}">
                                     Baca selengkapnya
                                 </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
+                <div>
+                 @if ($news->hasMorePages())
+                    <a href="" id="loadMore" onclick="loadMore(event)" class="btn-more"><b>BACA SELENGKAPNYA</b></a>
+                    @endif
             </div>
         </div>
     </section>
-    @endsection
+    <script>
+        let newsSkip = {{ $news->count() }}; // Mulai dengan jumlah berita yang ada
+
+        function loadMore(event) {
+            event.preventDefault(); // Mencegah perilaku default link
+            fetch(`{{ route('newsLoad') }}?skip=${newsSkip}`)
+                .then(response => response.json())
+                .then(data => {
+                    const newsContainer = document.getElementById('news-container');
+                    data.forEach(item => {
+                        const newItem = document.createElement('div');
+                        newItem.className = 'col-12 col-sm-6 col-md-3 col-lg-3 mb-4';
+                        newItem.innerHTML = `
+                    <div class="card berita-card distance-card">
+                            <img alt="Fresh vegetables on a table" class="card-img-top"
+                                src="{{ asset('/storage/beritas/') }}/${item.gambar}" />
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">{{ $item->judul }}</h5>
+                                <p class="card-text">{{ $item->deskripsi }}</p>
+                                <a class="read-more" href="#">
+                                    Baca selengkapnya
+                                </a>
+                            </div>
+                        </div>`;
+                        newsContainer.appendChild(newItem);
+                    });
+                    newsSkip += data.length; // Increment skip untuk pemuatan berikutnya
+                    if (data.length < 4) {
+                        document.getElementById('loadMore').style.display = 'none'; // Sembunyikan jika tidak ada lagi
+                    }
+                })
+                .catch(error => console.error('Error loading more news:', error));
+        }
+    </script>
+@endsection

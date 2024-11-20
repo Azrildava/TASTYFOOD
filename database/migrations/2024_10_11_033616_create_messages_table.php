@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tentangs', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->string('content');
-            $table->string('deskripsi')->nullable();
+            $table->string('subject')->nullable(true)->default('example@gmail.com');
+            $table->string('name');
+            $table->string('email');
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tentangs');
+        Schema::dropIfExists('messages');
     }
 };

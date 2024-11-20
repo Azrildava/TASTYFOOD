@@ -9,8 +9,8 @@ class Tentang extends Model
 {
     use HasFactory;
 
-    public $fillable = ['judul', 'deskripsi', 'gambar'];
-    public $visible = ['judul', 'deskripsi', 'gambar'];
+    public $fillable = ['judul', 'content', 'deskripsi'];
+    public $visible = ['judul', 'content', 'deskripsi'];
     public $timestamp = true;
 
 }

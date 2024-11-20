@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap");
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: "Montserrat", sans-serif !important;
+    background-color: #f4f4f4 !important;
+    overflow-x: hidden;
+    font-size: 1rem;
+    scroll-behavior: smooth;
+}
+
+.ms-auto {
+    margin-right: -80px;
+}
+
+.background-image-other {
+    background-size: cover;
+    background-image: url("/assets/img/Group 70@2x.png");
+    background-position: top center;
+    height: 80%;
+    width: 100%;
+    color: white;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: space-between;
+    /* Menambahkan jarak antara brand dan menu */
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    /* Menyelaraskan item nav secara vertikal */
+}
+
+.container h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: white;
+    /* Mengubah warna tautan menjadi putih */
+    margin-right: 0.7rem;
+    font-size: 1rem;
+    /* Ukuran font default */
+}
+
+.navbar .navbar-brand {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-left: -0px;
+    text-decoration: none;
+    /* Menghapus garis bawah */
+    color: white;
+    /* Warna normal */
+    transition: color 0.3s ease;
+    /* Menambahkan transisi untuk perubahan warna */
+}
+
+.navbar .navbar-brand:hover,
+.navbar-nav .nav-link:hover {
+    color: #ccc;
+    /* Pastikan hover tetap berwarna putih */
+    transition: color 0.3s ease;
+    /* Menambahkan transisi untuk perubahan warna */
+}
+
+/* Media queries for responsiveness */
+
+
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+    }
+
+    .navbar .navbar-brand {
+        font-size: 1.2rem;
+        /* Adjust brand size for smaller screens */
+        margin-left: 55px;
+        /* Center brand */
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .navbar-nav .nav-link {
+        margin-right: 0;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
+
+    .content {
+        top: 75%;
+        /* Adjust top position for better centering */
+        left: 1%;
+        /* Reduce left space */
+        right: 10%;
+        /* Adjust right space */
+        max-width: 90%;
+        padding: 0 10px;
+        font-size: 0.9rem;
+    }
+
+    .content h2 {
+        font-size: 2em;
+        line-height: 1.2;
+    }
+}
+
+
+/* Medium screens (tablet) */
+@media (min-width: 768px) and (max-width: 992px) {
+    .navbar .navbar-brand {
+        font-size: 1.3rem;
+        /* Slightly larger for tablet */
+        margin-left: -15px;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 1rem;
+    }
+
+    .content {
+        left: 10%;
+        right: 10%;
+        max-width: 80%;
+        font-size: 1rem;
+    }
+
+    .content h2 {
+        font-size: 2.5em;
+    }
+}
+
+/* Large screens (desktop) */
+@media (min-width: 992px) {
+    .navbar .navbar-brand {
+        font-size: 1.5rem;
+        /* Default size for large screens */
+        margin-left: -25px;
+    }
+
+    .content {
+        left: 20px;
+        right: 10%;
+        max-width: 655px;
+        font-size: 1.2rem;
+    }
+
+    .content h2 {
+        font-size: 3em;
+    }
+}
+
+/* Hamburger menu */
+.navbar-toggler {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-left: auto;
+    /* Move to the right */
+    margin-top: -20px;
+    margin-bottom: -45px;
+}

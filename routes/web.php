@@ -25,10 +25,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', IsAdmin::class]], fu
     Route::resource('tentang', App\Http\Controllers\TentangController::class);
     Route::resource('berita', App\Http\Controllers\BeritaController::class);
     Route::resource('contact', App\Http\Controllers\ContactController::class);
+    Route::resource('message', App\Http\Controllers\MessageController::class);
+    Route::resource('slider', App\Http\Controllers\SliderController::class);
 });
 
 // Route::get('/', [FrontController::class, 'home']);
 Route::get('galeri', [FrontController::class, 'galerii'])->name('galeri');
 Route::get('tentang', [FrontController::class, 'tentang'])->name('tentang');
 Route::get('berita', [FrontController::class, 'berita'])->name('berita');
+Route::get('berita/show/{id}', [FrontController::class, 'show'])->name('beritas.show');
+Route::get('news/load-more', [FrontController::class, 'loadMore'])->name('newsLoad');
 Route::get('contact', [FrontController::class, 'contact'])->name('contact');
+Route::post('kontak',[App\Http\Controllers\MessageController::class,'store'])->name('message.store');

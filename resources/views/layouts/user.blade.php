@@ -15,6 +15,12 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('/css/galeri.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
+
+    {{-- maps --}}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
 </head>
 
 <body>
@@ -36,6 +42,7 @@
 
     <!-- jQuery and other dependencies (if needed) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

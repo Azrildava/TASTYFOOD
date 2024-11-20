@@ -2,17 +2,9 @@
 @section('content')
     <div class="card m-4">
         <div class="card-header">
-            <h3 class="card-title">contact</h3>
+            <h3 class="card-title">Slider</h3>
             <div class="float-end">
-                 @php
-                    $kontackCount = App\Models\Contact::count();
-                @endphp
-
-                @if ($kontackCount < 1)
-                    <a href="{{ route('contact.create') }}"><i class=" nav-icon bi bi-plus-lg"></i></a>
-                    {{-- @else
-                    <button class="btn btn-sm btn-danger" disabled>Can`t Added</button> --}}
-                @endif
+                <a href="{{ route('slider.create') }}" class="btn btn-sm btn-primary">Add</a>
             </div>
         </div> <!-- /.card-header -->
         <div class="card-body p-0">
@@ -20,28 +12,27 @@
                 <thead>
                     <tr>
                         <th style="width: 10px">#</th>
-                        <th>Email</th>
-                        <th>No Telepon</th>
-                        <th>Alamat</th>
+                        <th>Slider</th>
                         <th style="text-align: center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php $no = 1; @endphp
-                    @forelse ($kontaks as $data)
+                    @forelse ($sliders as $data)
                         <tr class="align-middle">
                             <td>{{ $no++ }}</td>
-                            <td>{{ $data->email }}</td>
-                            <td>{{ $data->no_telp }}</td>
-                            <td>{{ $data->alamat }}</td>
+                            <td>
+                                <img src="{{ asset('/storage/sliders/' . $data->slider) }}" class="rounded"
+                                    style="width: 150px">
+                            </td>
                             <td class="text-center">
-                                <form action="{{ route('contact.destroy', $data->id) }}" method="POST">
+                                <form action="{{ route('slider.destroy', $data->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="action-buttons-grid">
-                                        <a href="{{ route('contact.edit', $data->id) }}"
+                                        <a href="{{ route('slider.edit', $data->id) }}"
                                             class="btn btn-sm btn-success">Edit</a>
-                                        <a href="{{ route('contact.destroy', $data->id) }}" class="btn btn-sm btn-danger"
+                                        <a href="{{ route('slider.destroy', $data->id) }}" class="btn btn-sm btn-danger"
                                             data-confirm-delete="true">Delete</a>
                                     </div>
                                 </form>
@@ -52,10 +43,11 @@
                             <td colspan="5" class="text-center">
                                 Data Data Belum Tersedia.
                             </td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
-            {{-- {!! $contactes->withQueryString()->links('pagination::bootstrap-4') !!} --}}
+            {!! $sliders->withQueryString()->links('pagination::bootstrap-4') !!}
         </div> <!-- /.card-body -->
-    </div> <!-- /.card -->
+    </div>
 @endsection

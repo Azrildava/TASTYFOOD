@@ -20,8 +20,8 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Gambar</th>
-                                    <th>Aksi</th>
+                                    <th>Pages</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,7 +29,9 @@
                                 @foreach ($galeris as $item)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td><img src="{{asset('/storage/galeris/'.$item->gambar)}}" alt="" style="width: 100px"></td>
+                                    <td>
+                                        <img src="{{asset('/storage/galeris/'.$item->gambar)}}" alt="" style="width: 100px; height: 100px; object-fit: cover; border-radius: 15px">
+                                    </td>
                                     <td>
                                         <form action="{{ route('galeri.destroy', $item->id) }}" method="post">
                                             @method('DELETE')

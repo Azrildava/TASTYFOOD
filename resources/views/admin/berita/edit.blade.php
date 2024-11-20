@@ -22,8 +22,8 @@
                       <div class="mb-3">
                         <label class="form-label">Judul</label>
                         <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul"
-                            value="{{old ('judul')}}" placeholder="judul" required>
-                        @error('judul')
+                            value="{{old ('judul', $berita->judul)}}" placeholder="judul" required>
+                        @error('judul')i
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -32,7 +32,7 @@
                       <div class="mb-3">
                         <label class="form-label">Deskripsi</label>
                         <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"
-                            value="{{old ('deskripsi')}}" placeholder="deskripsi" required>
+                            value="{{old ('deskripsi', $berita->deskripsi)}}" placeholder="deskripsi" required>
                         @error('deskripsi')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -42,7 +42,7 @@
                         <div class="mb-3">
                             <label class="form-label">Gambar</label>
                             <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar"
-                                value="{{old ('gambar')}}" required></input>
+                                value="{{old ('gambar', $berita->gambar)}}"></input>
                             @error('gambar')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -30,6 +30,16 @@
                         @enderror
                       </div>
                       <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <input type="text" class="form-control @error('content') is-invalid @enderror" name="deskripsi"
+                            value="{{old ('content')}}" placeholder="content" required>
+                        @error('content')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                      <div class="mb-3">
                         <label class="form-label">Deskripsi</label>
                         <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi"
                             value="{{old ('deskripsi')}}" placeholder="deskripsi" required>
@@ -39,16 +49,6 @@
                         </span>
                         @enderror
                       </div>
-                        <div class="mb-3">
-                            <label class="form-label">Gambar</label>
-                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar"
-                                value="{{old ('gambar')}}" required></input>
-                            @error('gambar')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
                         <button type="submit" class="btn btn-sm btn-primary">SIMPAN</button>
                         <button type="reset" class="btn btn-sm btn-warning">RESET</button>
 
